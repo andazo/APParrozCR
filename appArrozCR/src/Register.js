@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import React, {useState} from 'react'
+import { useNavigation } from "@react-navigation/native";
 import {firebase} from '../config'
 
 const Register = () => {
@@ -12,8 +13,17 @@ const Register = () => {
   const [variedad, setVariedad] = useState('')
   const [hectareas, setHectareas] = useState('')
 
-  registerUser = async (email,password,confrmPassword,nombre,localidad,variedad,hectareas) => {
-    if (password === confrmPassword) {
+  registerUser = async (email,password,nombre,localidad,variedad,hectareas) => {
+      const hectareaValue = parseInt(hectareas, 10);
+      if (email === '' || password === '' || confrmPassword === '' || nombre === '' || localidad === '' || variedad === '' || hectareas === '') {
+        alert('Ingrese los campos necesarios');
+        return;
+      }
+  
+      if (password !== confrmPassword) {
+        alert('Las contraseñas no coinicden');
+        return;
+      }
       await firebase.auth().createUserWithEmailAndPassword(email,password)
       .then(() => {
         firebase.auth().currentUser.sendEmailVerification({
@@ -32,19 +42,20 @@ const Register = () => {
             email,
             localidad,
             variedad,
-            hectareas,
+            hectareas: hectareaValue,
           })
         })
+        .then(() => {
+          alert('Se ha enviado un correo de verificación al correo electrónico ingresado')
+          useNavigation("Login");
+        })
         .catch((error) => {
-          alert(error.message)
+          console.log(error.message)
         })
       })
       .catch((error) => {
-        alert(error.message)
+        console.log(error.message)
       })
-    } else {
-      alert('Las contraseñas ingresadas no coinciden')
-    }
   }
 
   return (
@@ -104,7 +115,8 @@ const Register = () => {
         />
       </View>
       <TouchableOpacity
-        onPress={() => registerUser(email, password, nombre, localidad, variedad, hectareas)}
+        onPress={() => registerUser(email,password,nombre,localidad,variedad,hectareas)}
+        title="Register"
         style={styles.button}
       >
         <Text style={{ fontWeight: "bold", fontSize: 22 }}>Registrarme</Text>
