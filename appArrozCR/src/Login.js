@@ -1,12 +1,15 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet} from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../config";
+import { TextInput } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   loginUser = async (email, password) => {
     try {
@@ -22,26 +25,32 @@ const Login = () => {
       <View style={{ marginTop: 40 }}>
         <TextInput
           style={styles.textInput}
-          placeholder="Correo electrónico"
+          mode="outlined"
+          label="Correo electrónico"
           onChangeText={(email) => setEmail(email)}
           autoCapitalize="none"
           autoCorrect={false}
         />
         <TextInput
           style={styles.textInput}
-          placeholder="Contraseña"
+          mode="outlined"
+          label="Contraseña"
+          secureTextEntry={secureTextEntry}
+          right={<TextInput.Icon icon="eye" onPress={() => {
+            setSecureTextEntry(!secureTextEntry);
+            return false;
+          }}/>}
           onChangeText={(password) => setPassword(password)}
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
         />
       </View>
-      <TouchableOpacity
-        onPress={() => loginUser(email, password)}
-        style={styles.button}
-      >
-        <Text style={{ fontWeight: "bold", fontSize: 22 }}>Ingresar</Text>
-      </TouchableOpacity>
+      <Button icon="login" 
+        mode="outlined" 
+        onPress={() => loginUser(email, password)} 
+        style={styles.button}>
+        Ingresar
+      </Button>
       <TouchableOpacity
         onPress={() => navigation.navigate("Register")}
         style={{ marginTop: 20 }}
@@ -60,25 +69,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 70,
   },
   textInput: {
-    paddingTop: 20,
-    paddingBottom: 10,
-    width: 400,
-    fontSize: 20,
+    paddingTop: 5,
+    paddingBottom: 5,
+    width: 300,
+    fontSize: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#000",
     marginBottom: 10,
     textAlign: "center",
   },
   button: {
-    marginTop: 50,
+    marginTop: 40,
     height: 70,
-    width: 250,
-    backgroundColor: "#026efd",
+    width: 200,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 50,
+    borderRadius: 35,
   },
 });

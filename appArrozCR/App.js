@@ -37,7 +37,7 @@ function App(){
                             height:150,
                             borderBottomLeftRadius:50,
                             borderBottomRightRadius:50,
-                            backgroundColor: '#00e4d0',
+                            backgroundColor: '#164863',
                             shadowColor: '#000',
                             elevation:25
                         }
@@ -53,7 +53,7 @@ function App(){
                             height:150,
                             borderBottomLeftRadius:50,
                             borderBottomRightRadius:50,
-                            backgroundColor: '#00e4d0',
+                            backgroundColor: '#164863',
                             shadowColor: '#000',
                             elevation:25
                         }
@@ -74,7 +74,7 @@ function App(){
                         height:150,
                         borderBottomLeftRadius:50,
                         borderBottomRightRadius:50,
-                        backgroundColor: '#00e4d0',
+                        backgroundColor: '#164863',
                         shadowColor: '#000',
                         elevation:25
                     }
