@@ -1,13 +1,15 @@
-import { Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
+import { View,ScrollView,Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
+import { Appbar,Button, Menu, Divider, PaperProvider } from 'react-native-paper';
 import React, {useEffect, useState} from 'react'
 import {firebase} from '../config'
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setemail] = useState('');
   const [localidad, setlocalidad] = useState('');
   const [tipo, settipo] = useState('');
   const [hectarea, sethectarea] = useState('');
+
 
   useEffect(() => {
     firebase.firestore().collection('usuarios')
@@ -26,59 +28,83 @@ const Dashboard = () => {
   },[])
 
   return(
-    <SafeAreaView style={styles.container}>
-      <Text style={{fontSize:20, fontWeight:'bold'}}>
-        Bienvenido,{name.nombre}
-      </Text>
-      <Text style={{fontSize:20, fontWeight:'bold'}}>
-        Bienvenido,{email.email}
-      </Text>
-      <Text style={{fontSize:20, fontWeight:'bold'}}>
-        Bienvenido,{localidad.localidad}
-      </Text>
-      <Text style={{fontSize:20, fontWeight:'bold'}}>
-        Bienvenido,{tipo.variedad}
-      </Text>
-      <Text style={{fontSize:20, fontWeight:'bold'}}>
-        Bienvenido,{hectarea.hectareas}
-      </Text>
-      <TouchableOpacity
-        onPress={() => {firebase.auth().signOut()}}
-        style={styles.button}
-      >
-        <Text style={{ fontWeight: "bold", fontSize: 22 }}>
-          Cerrar sesión
-        </Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Información de usuario</Text>
+        <View style={styles.cardContent}>
+          <Text style={styles.infoItem}>Nombre: {name.nombre}</Text>
+          <Text style={styles.infoItem}>Correo: {email.email}</Text>
+          <Text style={styles.infoItem}>Localidad: {localidad.localidad}</Text>
+          <Text style={styles.infoItem}>Variedad: {tipo.variedad}</Text>
+          <Text style={styles.infoItem}>Hectareas: {hectarea.hectareas}</Text>
+        </View>
+      </View>
+      <View style={styles.containerButton}>
+        <TouchableOpacity style={[styles.button, styles.exitButton]} onPress={() => {firebase.auth().signOut()}}>
+          <Text style={styles.buttonText}>Cerrar sesión</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   )
 }
 
-export default Dashboard
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 30,
+    flexGrow: 1,
+    padding: 20,
+    backgroundColor: '#fff',
   },
-  textInput: {
-    paddingTop: 20,
-    paddingBottom: 10,
-    width: 400,
-    fontSize: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#000",
+  card: {
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  cardTitle: {
+    fontSize: 25,
+    fontWeight: 'bold',
     marginBottom: 10,
-    textAlign: "center",
+  },
+  cardContent: {
+    // Add styling for the content inside the card if needed
+  },
+  infoItem: {
+    fontSize: 18,
+    marginBottom: 8,
   },
   button: {
-    marginTop: 50,
-    height: 70,
-    width: 250,
-    backgroundColor: "#026efd",
+    backgroundColor: '#3498db',
+    paddingVertical: 25,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 200,
+  },
+  exitButton: {
+    backgroundColor: 'red',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  containerButton: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 50,
+    paddingHorizontal: 30,
+    backgroundColor: "white",
   },
 });
+
+export default Dashboard

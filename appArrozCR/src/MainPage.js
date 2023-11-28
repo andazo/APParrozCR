@@ -17,11 +17,11 @@ const MainPage = ({ navigation }) => {
         style={styles.image}
         resizeMode="contain"
       />
-      <Text style={styles.title}>Bienvenido a CRArroz</Text>
-      <Text style={styles.description}>Somos una plataforma que impulsa el rendimiento y salud de las plantaciones de arroz en el territorio nacional</Text>
+      <Text style={styles.title}>CR-Arroz</Text>
+      <Text style={styles.description}>Una plataforma moderna que mejora la salud y rendimiento de las platanciones de arroz en Costa Rica</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
-          <Text style={styles.buttonText}>Inicio sesión</Text>
+          <Text style={styles.buttonText}>Iniciar sesión</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity style={[styles.button, styles.registerButton]} onPress={handleRegisterPress}>
@@ -41,28 +41,28 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   image: {
-    width: 420,
+    width: 400,
     height: 300,
-    marginBottom: 30,
+    marginBottom: 10,
   },
   title: {
     fontSize: 35,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 15,
     color: "#333",
     textAlign: "center",
   },
   description: {
     fontSize: 18,
     textAlign: "center",
-    marginBottom: 30,
+    marginBottom: 35,
     color: "#666",
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    marginBottom: 20,
+    marginBottom: 15,
   },
   button: {
     backgroundColor: '#3498db',
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 300,
+    width: 250,
   },
   registerButton: {
     backgroundColor: '#2ecc71',

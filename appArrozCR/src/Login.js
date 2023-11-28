@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../config";
 import { TextInput } from 'react-native-paper';
-import { Button } from 'react-native-paper';
+import { Animated } from "react-native";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -22,7 +22,7 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <Text style={{ fontWeight: "bold", fontSize: 26 }}>Iniciar Sesión</Text>
-      <View style={{ marginTop: 40 }}>
+      <View style={{ marginTop: 50, marginBottom: 40 }}>
         <TextInput
           style={styles.textInput}
           mode="outlined"
@@ -45,12 +45,9 @@ const Login = () => {
           autoCorrect={false}
         />
       </View>
-      <Button icon="login" 
-        mode="outlined" 
-        onPress={() => loginUser(email, password)} 
-        style={styles.button}>
-        Ingresar
-      </Button>
+      <TouchableOpacity style={[styles.button]} onPress={() => loginUser(email, password)}>
+        <Text style={styles.buttonText}>Ingresar</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("Register")}
         style={{ marginTop: 20 }}
@@ -69,7 +66,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: 70,
+    justifyContent: "center",
+    paddingHorizontal: 30,
+    backgroundColor: "white",
   },
   textInput: {
     paddingTop: 5,
@@ -81,12 +80,27 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: "center",
   },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginBottom: 15,
+  },
   button: {
-    marginTop: 40,
-    height: 60,
-    width: 150,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 35,
+    backgroundColor: '#3498db',
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 200,
+  },
+  registerButton: {
+    backgroundColor: '#2ecc71',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

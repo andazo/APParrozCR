@@ -37,20 +37,10 @@ function App(){
                     }}
                 />
 
-
                 <Stack.Screen
                     name="Login"
                     component={Login}
                     options={{
-                        headerTitle: () => <Header name="CR Arroz"/>,
-                        headerStyle: {
-                            height:150,
-                            borderBottomLeftRadius:50,
-                            borderBottomRightRadius:50,
-                            backgroundColor: '#164863',
-                            shadowColor: '#000',
-                            elevation:25
-                        }
                     }}
                 />
 
@@ -58,15 +48,6 @@ function App(){
                     name="Register"
                     component={Register}
                     options={{
-                        headerTitle: () => <Header name="CR Arroz"/>,
-                        headerStyle: {
-                            height:150,
-                            borderBottomLeftRadius:50,
-                            borderBottomRightRadius:50,
-                            backgroundColor: '#164863',
-                            shadowColor: '#000',
-                            elevation:25
-                        }
                     }}
                 />
             </Stack.Navigator>
@@ -79,15 +60,6 @@ function App(){
                 name="Dashboard"
                 component={Dashboard}
                 options={{
-                    headerTitle: () => <Header name="Dashboard"/>,
-                    headerStyle: {
-                        height:150,
-                        borderBottomLeftRadius:50,
-                        borderBottomRightRadius:50,
-                        backgroundColor: '#164863',
-                        shadowColor: '#000',
-                        elevation:25
-                    }
                 }}
             />
         </Stack.Navigator>
