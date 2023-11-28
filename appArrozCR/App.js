@@ -6,6 +6,7 @@ import Login from "./src/Login";
 import Register from "./src/Register";
 import Dashboard from "./src/Dashboard";
 import Header from "./components/Header"
+import MainPage from "./src/MainPage";
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,15 @@ function App(){
     if(!user){
         return(
             <Stack.Navigator>
+
+                <Stack.Screen
+                    name="MainPage"
+                    component={MainPage}
+                    options={{
+                    }}
+                />
+
+
                 <Stack.Screen
                     name="Login"
                     component={Login}

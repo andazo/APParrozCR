@@ -15,7 +15,7 @@ const Login = () => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
     } catch (error) {
-      alert(error.message);
+      alert("Usuario o contraseña incorrecto");
     }
   };
 
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 40,
-    height: 70,
-    width: 200,
+    height: 60,
+    width: 150,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 35,
