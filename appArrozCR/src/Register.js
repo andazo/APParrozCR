@@ -21,7 +21,6 @@ const Register = () => {
         alert('Ingrese los campos necesarios');
         return;
       }
-  
       if (password !== confrmPassword) {
         alert('Las contraseñas no coinicden');
         return;
@@ -129,7 +128,7 @@ const Register = () => {
           keyboardType="numeric"
         />
       </View>
-      <TouchableOpacity style={[styles.button,styles.registerButton]} onPress={() => loginUser(email, password)}>
+      <TouchableOpacity style={[styles.button,styles.registerButton]} onPress={() => registerUser(email,password,nombre,localidad,variedad,hectareas)} title="Register">
         <Text style={styles.buttonText}>Registrarme</Text>
       </TouchableOpacity>
     </View>
